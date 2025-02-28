@@ -27,7 +27,7 @@ public class Problema {
         }
 
 
-        int countLarger = 0;
+        int countLarger = 1;
         java.util.Set<Integer> valoriUnice = new java.util.HashSet<>();
 
         for (int p : punctaje) {
@@ -38,6 +38,6 @@ public class Problema {
             }
         }
 
-        return countLarger + 1;
+        return countLarger;
     }
 }
