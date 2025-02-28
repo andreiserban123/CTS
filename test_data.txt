@@ -1,0 +1,32 @@
+Normal case - value exists, some values are larger
+[10,20,30,40,50];30;3;false
+
+Value exists, no larger values
+[10,20,30,40,50];50;1;false
+
+Value exists, all other values are larger
+[10,60,70,80,90,100];10;6;false
+
+Value doesn't exist
+[10,20,30,40,50];15;0;true
+
+Null array
+null;10;0;true
+
+Duplicate values
+[10,20,30,30,40,50];30;3;false
+
+All same values
+[30,30,30,30];30;1;false
+
+Empty array
+[];10;0;true
+
+Larger duplicates
+[10,40,40,50,50];40;2;false
+
+Negative values
+[-50,-40,-30,-20,-10];-30;3;false
+
+Multiple duplicates
+[5,10,10,15,20,20,5,25];10;4;false
