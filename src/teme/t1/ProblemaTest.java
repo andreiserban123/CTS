@@ -106,7 +106,7 @@ public class ProblemaTest {
         System.out.println("Should Throw Exception: " + testCase.shouldThrowException);
 
         try {
-            teme.t1.Problema problema = new teme.t1.Problema(testCase.punctaje);
+            Problema problema = new Problema(testCase.punctaje);
             int position = problema.getPozitie(testCase.pct);
 
             System.out.println("Actual Position: " + position);

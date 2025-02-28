@@ -11,7 +11,6 @@ public class Problema {
         this.punctaje = punctaje;
     }
 
-
     public int getPozitie(int pct) {
         if (punctaje.length == 0) {
             throw new RuntimeException("The array is empty");
