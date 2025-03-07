@@ -65,7 +65,6 @@ public class ProblemaTest {
                     int[] punctaje = null;
 
                     if (!punctajeStr.equals("null")) {
-                        // Parse JSON-like array [10,20,30,40,50]
                         punctajeStr = punctajeStr.replaceAll("[\\[\\]]", "");
                         if (!punctajeStr.isEmpty()) {
                             String[] numStrs = punctajeStr.split(",");
@@ -136,6 +135,4 @@ public class ProblemaTest {
             }
         }
     }
-
-
 }
