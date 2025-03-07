@@ -2,7 +2,7 @@ package teme.t1;
 
 
 public class Problema {
-    private int[] punctaje;
+    private final int[] punctaje;
 
     public Problema(int[] punctaje) {
         if (punctaje == null) {

@@ -22,11 +22,12 @@ public class ProblemaTest {
     public static void main(String[] args) {
         List<TestCase> testCases = null;
         try {
-            testCases = readTestCasesFromFile("test_data.txt");
+            testCases = readTestCasesFromFile();
             System.out.println("Successfully loaded test cases from file.");
         } catch (Exception e) {
             System.out.println("Could not read from file: " + e.getMessage());
         }
+        assert testCases != null;
         int totalTests = testCases.size();
         int passedTests = 0;
 
@@ -44,10 +45,10 @@ public class ProblemaTest {
         System.out.println("Pass Rate: " + String.format("%.2f", passRate) + "%");
     }
 
-    private static List<TestCase> readTestCasesFromFile(String filename) throws IOException {
+    private static List<TestCase> readTestCasesFromFile() throws IOException {
         List<TestCase> testCases = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        BufferedReader reader = new BufferedReader(new FileReader("test_data.txt"));
         String line;
         String testName = null;
 
@@ -65,7 +66,7 @@ public class ProblemaTest {
 
                     if (!punctajeStr.equals("null")) {
                         // Parse JSON-like array [10,20,30,40,50]
-                        punctajeStr = punctajeStr.replaceAll("\\[|\\]", "");
+                        punctajeStr = punctajeStr.replaceAll("[\\[\\]]", "");
                         if (!punctajeStr.isEmpty()) {
                             String[] numStrs = punctajeStr.split(",");
                             punctaje = new int[numStrs.length];
