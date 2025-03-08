@@ -22,7 +22,7 @@ public class Main {
         MateriePrima zahar = new MateriePrima("Zahăr", "kg");
         MateriePrima carne = new MateriePrima("Carne de vită", "kg");
         MateriePrima cartofi = new MateriePrima("Cartofi", "kg");
-        MateriePrima roșii = new MateriePrima("Roșii", "kg");
+        MateriePrima rosii = new MateriePrima("Roșii", "kg");
         MateriePrima branza = new MateriePrima("Brânză", "kg");
 
         magazie.adaugaStoc(faina, 10.0);
@@ -30,7 +30,7 @@ public class Main {
         magazie.adaugaStoc(zahar, 5.0);
         magazie.adaugaStoc(carne, 1.5);
         magazie.adaugaStoc(cartofi, 20.0);
-        magazie.adaugaStoc(roșii, 8.0);
+        magazie.adaugaStoc(rosii, 8.0);
         magazie.adaugaStoc(branza, 7.0);
 
         magazie.adaugaStoc(carne, 0.5);
@@ -40,7 +40,7 @@ public class Main {
         // Creăm preparate pentru meniu
         Preparat pizza = new Preparat("Pizza Margherita", Arrays.asList(
                 new Ingredient(faina, 0.3),
-                new Ingredient(roșii, 0.2),
+                new Ingredient(rosii, 0.2),
                 new Ingredient(branza, 0.15)
         ), 35.0);
 
