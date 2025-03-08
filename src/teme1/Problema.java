@@ -1,4 +1,4 @@
-package teme.t1;
+package teme1;
 
 
 public class Problema {
@@ -37,7 +37,6 @@ public class Problema {
                 countLarger++;
             }
         }
-
         return countLarger + 1;
     }
 }
