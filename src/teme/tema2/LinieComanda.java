@@ -1,7 +1,9 @@
-package tema2;
+package teme.tema2;
 
 public class LinieComanda {
     private final Preparat preparat;
+    // nume mai bun -> portii
+    // poate mai bine scap de toata cantitatea
     private final int cantitate;
 
     public LinieComanda(Preparat preparat, int cantitate) {

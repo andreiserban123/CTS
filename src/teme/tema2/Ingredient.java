@@ -1,4 +1,4 @@
-package tema2;
+package teme.tema2;
 
 class Ingredient {
     private final MateriePrima materiePrima;

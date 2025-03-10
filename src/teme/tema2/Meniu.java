@@ -1,10 +1,11 @@
-package tema2;
+package teme.tema2;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 class Meniu {
+    // puteam folosi un SET
     private final List<Preparat> preparate;
 
     public Meniu() {

@@ -1,4 +1,4 @@
-package tema2;
+package teme.tema2;
 
 import java.util.Objects;
 

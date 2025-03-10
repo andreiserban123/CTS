@@ -1,4 +1,4 @@
-package teme1;
+package teme.teme1;
 
 
 public class Problema {

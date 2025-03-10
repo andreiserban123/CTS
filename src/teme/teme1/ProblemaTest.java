@@ -1,4 +1,4 @@
-package teme1;
+package teme.teme1;
 
 import java.io.*;
 import java.util.*;

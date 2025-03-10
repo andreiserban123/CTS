@@ -1,4 +1,4 @@
-package tema2;
+package teme.tema2;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,7 +16,6 @@ public class Main {
         boolean anuleazaIntreagaComanda = false;
         GestionarComenzi gestionarComenzi = new GestionarComenzi(magazie, anuleazaIntreagaComanda);
 
-        // Creăm câteva materii prime
         MateriePrima faina = new MateriePrima("Făină", "kg");
         MateriePrima oua = new MateriePrima("Ouă", "buc");
         MateriePrima zahar = new MateriePrima("Zahăr", "kg");
@@ -37,7 +36,7 @@ public class Main {
 
         magazie.afiseazaStoc();
 
-        // Creăm preparate pentru meniu
+
         Preparat pizza = new Preparat("Pizza Margherita", Arrays.asList(
                 new Ingredient(faina, 0.3),
                 new Ingredient(rosii, 0.2),
@@ -60,16 +59,13 @@ public class Main {
                 new Ingredient(zahar, 0.2)
         ), 18.0);
 
-        // Adăugăm preparatele în meniu
         meniu.adaugaPreparat(pizza);
         meniu.adaugaPreparat(paste);
         meniu.adaugaPreparat(fripta);
         meniu.adaugaPreparat(prajitura);
 
-        // Afișăm meniul
         meniu.afiseazaMeniu();
 
-        // Simulăm o comandă
         System.out.println("\n=== SIMULARE COMANDĂ 1 ===");
         Comanda comanda1 = gestionarComenzi.creeazaComanda(Arrays.asList(
                 new LinieComanda(pizza, 2),
@@ -80,13 +76,10 @@ public class Main {
         System.out.println(comanda1);
         gestionarComenzi.valideazaComanda(comanda1);
 
-        // Afișăm stocul după prima comandă
         System.out.println("\nStoc după prima comandă:");
         magazie.afiseazaStoc();
 
-        // Simulăm o comandă care depășește stocul
         System.out.println("\n=== SIMULARE COMANDĂ 2 (stoc insuficient) ===");
-        // Comanda va cere mai multă carne decât este disponibilă
         Comanda comanda2 = gestionarComenzi.creeazaComanda(Arrays.asList(
                 new LinieComanda(fripta, 10), // Va necesita 3kg de carne, mai mult decât avem
                 new LinieComanda(paste, 5)
@@ -95,11 +88,9 @@ public class Main {
         System.out.println(comanda2);
         gestionarComenzi.valideazaComanda(comanda2);
 
-        // Afișăm stocul final
         System.out.println("\nStoc final:");
         magazie.afiseazaStoc();
 
-        // Afișăm toate comenzile validate
         System.out.println("\n=== COMENZI VALIDATE ===");
         for (Comanda c : gestionarComenzi.getComenzi()) {
             if (c.isValidata()) {
@@ -108,39 +99,30 @@ public class Main {
             }
         }
 
-        // Demonstrăm funcționalitatea FIFO în condiții de concurență
         System.out.println("\n=== TEST CONCURENȚĂ FIFO ===");
 
-        // Resetăm stocul pentru demonstrație
         magazie = new Magazie();
 
-        // Adăugăm câteva loturi de făină (pentru a demonstra FIFO)
         magazie.adaugaStoc(faina, 3.0); // Primul lot
         magazie.adaugaStoc(faina, 5.0); // Al doilea lot
         magazie.adaugaStoc(faina, 2.0); // Al treilea lot
 
-        // Afișăm stocul inițial
         magazie.afiseazaStoc();
 
-        // Creăm un thread pool
         ExecutorService executor = Executors.newFixedThreadPool(5);
 
-        // Creăm 5 thread-uri care vor extrage făină simultan
         for (int i = 0; i < 5; i++) {
             final int threadId = i + 1;
             Magazie finalMagazie = magazie;
             executor.submit(() -> {
                 try {
-                    // Punem un delay aleatoriu pentru a simula concurența
                     Thread.sleep(new Random().nextInt(500));
 
                     System.out.println("Thread " + threadId + " încearcă să extragă făină...");
 
-                    // Creăm un preparat fictiv care necesită făină
                     Preparat prajituraConcurenta = new Preparat("Prăjitură " + threadId,
                             Collections.singletonList(new Ingredient(faina, 1.5)), 15.0);
 
-                    // Extragem făina (sau încercăm)
                     boolean succes = finalMagazie.extrageMateriiPrime(prajituraConcurenta, 1);
 
                     if (succes) {
