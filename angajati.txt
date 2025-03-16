@@ -1,0 +1,10 @@
+Ion,Popescu,35,95,2,Proiect1,Proiect2,4500,Software Developer
+Maria,Ionescu,28,87,1,ProiectHR,3800,HR Specialist
+Andrei,Vasilescu,42,90,3,ProiectA,ProiectB,ProiectC,5200,Project Manager
+Elena,Georgescu,31,79,1,ProiectFinante,4100,Financial Analyst
+Mihai,Stanescu,25,85,2,ProiectIntern,ProiectMarketing,3200,Marketing Specialist
+Ana,Dumitru,37,92,2,ProiectVanzari,ProiectClient,4700,Sales Manager
+Alexandru,Constantin,45,88,1,ProiectIT,6000,IT Director
+Cristina,Popa,29,83,2,ProiectSocial,ProiectWeb,3900,Social Media Specialist
+Gheorghe,Marinescu,33,91,3,Proiect1,Proiect2,Proiect3,4300,Systems Engineer
+Daniela,Neagu,39,86,1,ProiectAdmin,4000,Office Administrator

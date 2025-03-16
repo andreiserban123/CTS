@@ -1,6 +1,6 @@
 package seminar.week3.clase;
 
-public class Lucrator extends Angajat{
+public class Lucrator extends Angajat {
 
     public Lucrator(String nume) {
         super(nume);
