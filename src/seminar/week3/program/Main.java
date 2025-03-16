@@ -10,7 +10,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<Angajat> angajati = new ArrayList<Angajat>();
+        List<Angajat> angajati = new ArrayList<>();
         angajati.add(new Lucrator("Andrei"));
         angajati.add(new Lucrator("Mihai"));
         angajati.add(new Manager("George"));
