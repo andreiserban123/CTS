@@ -40,6 +40,7 @@ public class Student extends Aplicant {
     }
 
 
+    @Override
     public int finantare() {
         int s = 20;
         System.out.println("Studentul " + getNume() + " " + getPrenume() + " primeste" + s + " Euro/zi in proiect.");

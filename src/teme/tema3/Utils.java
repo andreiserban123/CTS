@@ -1,98 +1,123 @@
 package teme.tema3;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Utils {
 
-    public static List<? extends Aplicant> readAplicanti(String file, TipAplicant tip) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(file));
-        scanner.useDelimiter("[,\n" +
-                "]");
-
+    public static List<? extends Aplicant> readAplicanti(String file, TipAplicant tip) throws IOException {
         List<Aplicant> aplicanti = new ArrayList<>();
 
-        while (scanner.hasNext()) {
-            String nume = scanner.next();
-            String prenume = scanner.next();
-            int varsta = scanner.nextInt();
-            int punctaj = scanner.nextInt();
-            int nr_proiecte = scanner.nextInt();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
 
-            String[] denumireProiecte = new String[nr_proiecte];
-            for (int i = 0; i < nr_proiecte; i++) {
-                denumireProiecte[i] = scanner.next();
-            }
+                String[] values = line.split(",");
+                if (values.length < 5) {
+                    System.out.println("Warning: Invalid data format in line: " + line);
+                    continue;
+                }
 
-            Aplicant aplicant = null;
+                String nume = values[0].trim();
+                String prenume = values[1].trim();
+                int varsta = Integer.parseInt(values[2].trim());
+                int punctaj = Integer.parseInt(values[3].trim());
+                int nr_proiecte = Integer.parseInt(values[4].trim());
 
-            switch (tip) {
-                case STUDENT:
-                    int an_studii = scanner.nextInt();
-                    String facultate = scanner.next();
-                    aplicant = new Student(nume, prenume, varsta, punctaj, nr_proiecte,
-                            denumireProiecte, facultate, an_studii);
-                    break;
+                if (values.length < 5 + nr_proiecte) {
+                    System.out.println("Warning: Not enough project names in line: " + line);
+                    continue;
+                }
 
-                case ANGAJAT:
-                    int salariu = scanner.nextInt();
-                    String ocupatie = scanner.next();
-                    aplicant = new Angajat(nume, prenume, varsta, punctaj, nr_proiecte,
-                            denumireProiecte, salariu, ocupatie);
-                    break;
+                String[] denumireProiecte = new String[nr_proiecte];
+                for (int i = 0; i < nr_proiecte; i++) {
+                    denumireProiecte[i] = values[5 + i].trim();
+                }
 
-                case ELEV:
-                    int clasa = scanner.nextInt();
-                    String tutore = scanner.next();
-                    aplicant = new Elev(nume, prenume, varsta, punctaj, nr_proiecte,
-                            denumireProiecte, clasa, tutore);
-                    break;
-            }
+                Aplicant aplicant = null;
 
-            if (aplicant != null) {
-                aplicanti.add(aplicant);
+                switch (tip) {
+                    case STUDENT:
+                        if (values.length < 5 + nr_proiecte + 2) {
+                            System.out.println("Warning: Not enough data for student in line: " + line);
+                            continue;
+                        }
+                        int an_studii = Integer.parseInt(values[5 + nr_proiecte].trim());
+                        String facultate = values[6 + nr_proiecte].trim();
+                        aplicant = new Student(nume, prenume, varsta, punctaj, nr_proiecte,
+                                denumireProiecte, facultate, an_studii);
+                        break;
+
+                    case ANGAJAT:
+                        if (values.length < 5 + nr_proiecte + 2) {
+                            System.out.println("Warning: Not enough data for employee in line: " + line);
+                            continue;
+                        }
+                        int salariu = Integer.parseInt(values[5 + nr_proiecte].trim());
+                        String ocupatie = values[6 + nr_proiecte].trim();
+                        aplicant = new Angajat(nume, prenume, varsta, punctaj, nr_proiecte,
+                                denumireProiecte, salariu, ocupatie);
+                        break;
+
+                    case ELEV:
+                        if (values.length < 5 + nr_proiecte + 2) {
+                            System.out.println("Warning: Not enough data for pupil in line: " + line);
+                            continue;
+                        }
+                        int clasa = Integer.parseInt(values[5 + nr_proiecte].trim());
+                        String tutore = values[6 + nr_proiecte].trim();
+                        aplicant = new Elev(nume, prenume, varsta, punctaj, nr_proiecte,
+                                denumireProiecte, clasa, tutore);
+                        break;
+                }
+
+                if (aplicant != null) {
+                    aplicanti.add(aplicant);
+                }
             }
         }
 
-        scanner.close();
         return aplicanti;
     }
 
-    public static List<Student> readStudents(String file) throws FileNotFoundException {
-        return (List<Student>) readAplicanti(file, TipAplicant.STUDENT);
-    }
-
-    public static List<Angajat> readAngajati(String file) throws FileNotFoundException {
-        return (List<Angajat>) readAplicanti(file, TipAplicant.ANGAJAT);
-    }
-
-    public static List<Elev> readPupil(String file) throws FileNotFoundException {
-        return (List<Elev>) readAplicanti(file, TipAplicant.ELEV);
-    }
-
-    public static void readAll() {
-        try {
-            List<Elev> listaelevi = readPupil("elevi.txt");
-            for (Elev elev : listaelevi) {
-                System.out.println(elev.toString());
+    public static List<Student> readStudents(String file) throws IOException {
+        List<?> aplicanti = readAplicanti(file, TipAplicant.STUDENT);
+        List<Student> students = new ArrayList<>();
+        for (Object obj : aplicanti) {
+            if (obj instanceof Student) {
+                students.add((Student) obj);
             }
-
-            List<Student> listastudenti = readStudents("studenti.txt");
-            for (Student student : listastudenti) {
-                System.out.println(student.toString());
-            }
-
-            List<Angajat> listaangajati = readAngajati("angajati.txt");
-            for (Angajat angajat : listaangajati) {
-                System.out.println(angajat.toString());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return students;
+    }
+
+    public static List<Angajat> readAngajati(String file) throws IOException {
+        List<?> aplicanti = readAplicanti(file, TipAplicant.ANGAJAT);
+        List<Angajat> angajati = new ArrayList<>();
+        for (Object obj : aplicanti) {
+            if (obj instanceof Angajat) {
+                angajati.add((Angajat) obj);
+            }
+        }
+        return angajati;
+    }
+
+    public static List<Elev> readPupil(String file) throws IOException {
+        List<?> aplicanti = readAplicanti(file, TipAplicant.ELEV);
+        List<Elev> elevi = new ArrayList<>();
+        for (Object obj : aplicanti) {
+            if (obj instanceof Elev) {
+                elevi.add((Elev) obj);
+            }
+        }
+        return elevi;
     }
 
     public enum TipAplicant {

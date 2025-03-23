@@ -1,6 +1,7 @@
 package teme.tema3;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class Program {
@@ -14,6 +15,8 @@ public class Program {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Fisierul nu a fost gasit!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
