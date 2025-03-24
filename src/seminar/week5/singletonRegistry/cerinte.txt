@@ -7,5 +7,16 @@
 
  CERITA 2
 
- Vreau sa fac 4 cuptoare in loc de 1,
- Vreau ca bucatarul sa aleaga cel mai liber cuptor dpdv al timpului
+
+EAGER
+vreau clasa bucatoarie cu 4cuptoare
+Vreau sa fac 4 cuptoare in loc de 1,
+Vreau ca bucatarul sa aleaga cel mai liber cuptor dpdv al timpului
+
+
+ var 2
+ LAZY
+ Nu stim cate cuptoare avem in buc
+ vreau sa pot adauga un nr de cuptoare cu o restrictie
+
+ getInstance()?????
