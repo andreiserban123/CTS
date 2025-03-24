@@ -1,0 +1,12 @@
+despre un restaurant stiu:
+1. daca masa este afara sau inauntru
+2. nr scaune/pers
+3. au un int id
+
+Vreau sa implementez un modul care permite ospatarilor
+sa indentifice cea mai buna masa conform asteptarilor clientului
+
+Restaurant -> lista MASA
+
+trebuie sa fie thread safe
+

@@ -1,0 +1,11 @@
+ - Avem un restaurant cu un singur cupor pentru gatit cu anumite setari
+ - Numar maxim de grade cuptor, lista de asteptare
+ - Bucatarii pregatesc prepartate in cupro (10 minute pentru pizza, etc)
+ - Fiind un unic cuptor se va face o lista de asteptare pentru preparatele
+ - Preparate ( nr de minute in cuptor si nr grade de gatire si daca nu )
+
+
+ CERITA 2
+
+ Vreau sa fac 4 cuptoare in loc de 1,
+ Vreau ca bucatarul sa aleaga cel mai liber cuptor dpdv al timpului
