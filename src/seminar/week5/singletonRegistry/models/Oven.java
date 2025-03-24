@@ -4,28 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Oven {
-    //   singleton instance
-    private static Oven instance;
-
-    // singleton data
     private static int idNext = 1;
-    private int id;
     public final int MAX_TEMPERATURE;
+    private int id;
     private List<Dish> dishes;
 
-    static {
-//        simulation
-        instance = new Oven(300);
-    }
-
-    private Oven(int maxTemp) {
+    public Oven(int maxTemp) {
         MAX_TEMPERATURE = maxTemp;
         dishes = new ArrayList<>();
         this.id = idNext++;
     }
 
-    public static Oven getInstance() {
-        return instance;
+    public int getId() {
+        return id;
     }
 
     public void addDish(Dish dish) {
@@ -36,12 +27,25 @@ public class Oven {
         }
     }
 
+    public int getTotalCookingMinutes() {
+        int totalMinutes = 0;
+        for (Dish dish : dishes) {
+            totalMinutes += dish.getMinutes();
+        }
+        return totalMinutes;
+    }
+
+    public List<Dish> getDishes() {
+        return dishes;
+    }
+
     @Override
     public String toString() {
         return "Oven{" +
                 "id=" + id +
                 ", MAX_TEMPERATURE=" + MAX_TEMPERATURE +
                 ", dishes=" + dishes +
+                ", totalCookingMinutes=" + getTotalCookingMinutes() +
                 '}';
     }
 }
