@@ -2,14 +2,17 @@ package seminar.week5.singletonRegistry.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Oven {
+    public static final int NR_OF_INSTANCES = 4;
+    private static Map<Integer, Oven> ovens = new java.util.HashMap<>();
     private static int idNext = 1;
     public final int MAX_TEMPERATURE;
     private int id;
     private List<Dish> dishes;
 
-    public Oven(int maxTemp) {
+    private Oven(int maxTemp) {
         MAX_TEMPERATURE = maxTemp;
         dishes = new ArrayList<>();
         this.id = idNext++;
