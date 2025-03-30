@@ -1,30 +1,49 @@
 package seminar.week5.singletonRegistry.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Oven {
+    public static final int MAX_NR_OF_INSTANCES = 4;
+    private static List<Oven> ovens = new ArrayList<>();
     private static int idNext = 1;
-    public final int MAX_TEMPERATURE;
     private int id;
     private List<Dish> dishes;
+    private int maxTemperature;
 
-    public Oven(int maxTemp) {
-        MAX_TEMPERATURE = maxTemp;
+    private Oven(int maxTemp) {
+        if (ovens.size() >= MAX_NR_OF_INSTANCES) {
+            throw new IllegalStateException("Maximum number of ovens reached");
+        }
+        this.maxTemperature = maxTemp;
         dishes = new ArrayList<>();
         this.id = idNext++;
     }
 
-    public int getId() {
-        return id;
+    public static List<Oven> getOvensRegistry() {
+        return Collections.unmodifiableList(ovens);
     }
 
-    public void addDish(Dish dish) {
-        if (dish.getTemperature() <= MAX_TEMPERATURE) {
-            dishes.add(dish);
-        } else {
-            throw new IllegalArgumentException("Dish exceeds maximum temperature");
+    public static void createOven(int maxTemp) {
+        Oven oven = new Oven(maxTemp);
+        ovens.add(oven);
+    }
+
+    public static void addDish(Dish dish) {
+        if (ovens.isEmpty()) {
+            throw new IllegalStateException("No ovens available");
         }
+        var lowestTimeOven = ovens.stream()
+                .filter(o -> o.maxTemperature >= dish.getTemperature())
+                .min(Comparator.comparingInt(Oven::getTotalCookingMinutes))
+                .orElseThrow(() -> new IllegalStateException("No suitable oven found"));
+        lowestTimeOven.dishes.add(dish);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getTotalCookingMinutes() {
@@ -35,17 +54,12 @@ public class Oven {
         return totalMinutes;
     }
 
-    public List<Dish> getDishes() {
-        return dishes;
-    }
-
     @Override
     public String toString() {
         return "Oven{" +
                 "id=" + id +
-                ", MAX_TEMPERATURE=" + MAX_TEMPERATURE +
                 ", dishes=" + dishes +
-                ", totalCookingMinutes=" + getTotalCookingMinutes() +
+                ", maxTemperature=" + maxTemperature +
                 '}';
     }
 }
