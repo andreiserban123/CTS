@@ -69,6 +69,20 @@ public class Magazin implements Cloneable {
         return materialeDecoratiuni;
     }
 
+    public int calculGradIncendiu() {
+        int grad = 0;
+        if (duritate < 2) {
+            grad++;
+        }
+        if (getMaterialeDecoratiuni().contains("Sticla")) {
+            grad++;
+        }
+        if (getMaterialeDecoratiuni().contains("Lemn")) {
+            grad++;
+        }
+        return grad;
+    }
+
     @Override
     public String toString() {
         return "Magazin{" +

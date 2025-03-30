@@ -38,5 +38,6 @@ public class Program {
                 .build();
 
         System.out.println(magazin3);
+        System.out.println("Grad incendiu " + magazin3.calculGradIncendiu());
     }
 }
