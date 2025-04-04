@@ -11,9 +11,14 @@ public class Magazin implements Cloneable {
     private double duritate;
     private List<String> materialeDecoratiuni = new ArrayList<>();
 
-    Magazin() {
-        this.nrIntrari = 1;
-        this.isPodeauaStandard = true;
+
+    public Magazin(String denumire, int suprafata, int nrIntrari, boolean isPodeauaStandard, double duritate, List<String> materialeDecoratiuni) {
+        this.denumire = denumire;
+        this.suprafata = suprafata;
+        this.nrIntrari = nrIntrari;
+        this.isPodeauaStandard = isPodeauaStandard;
+        this.duritate = duritate;
+        this.materialeDecoratiuni = materialeDecoratiuni;
     }
 
     @Override
