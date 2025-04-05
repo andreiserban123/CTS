@@ -13,10 +13,9 @@ public class Comanda {
     private final List<LinieComanda> liniiComanda;
 
     private final Date dataComanda;
-
+    private final TipComanda tipComanda;
     private boolean validata;
 
-    private final TipComanda tipComanda;
     public Comanda(List<LinieComanda> linii, TipComanda tipComanda) {
         this.id = nextId++;
         this.liniiComanda = new ArrayList<>(linii);
