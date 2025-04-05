@@ -1,15 +1,24 @@
 package seminar.week6.pregatire.clase;
 
 import java.util.HashMap;
-import java.util.Map;
 
-public abstract class Conexiune implements ServiceConnection {
-    private static Map<String, Conexiune> conexiuni = new HashMap<>();
+public class Conexiune {
 
-    static {
-        conexiuni.put("gps", new GpsConexiune());
-        conexiuni.put("vreme", new VremeConexiune());
-        conexiuni.put("baza", new BazaConexiune());
+    private static HashMap<Client, Conexiune> map = new HashMap<>();
+    private boolean isConnected;
+
+    private Conexiune() {
+        System.out.println("O noua conexiune");
+        isConnected = true;
     }
 
+
+    public static Conexiune getConexiune(Client c) {
+        if (map.containsKey(c)) {
+            return map.get(c);
+        }
+        var conexiune = new Conexiune();
+        map.put(c, conexiune);
+        return conexiune;
+    }
 }
