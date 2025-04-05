@@ -10,6 +10,7 @@ public class Main {
         StickerFactory factory = new StickerFactory();
         Sticker st = factory.getStickerforMasina(m);
         Sticker st2 = factory.getStickerforMasina(m);
-        System.out.println(st == st2);
+        System.out.println(st);
+        System.out.println(st2);
     }
 }
