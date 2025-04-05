@@ -4,12 +4,11 @@ public class Masina implements IMasina, Cloneable {
 
     private String modelMasina;
     private int anFabricatie;
-    private String dimensiuni;
+    private String dimensiune = "200x200";
 
-    public Masina(String modelMasina, int anFabricatie, String dimensiuni) {
+    public Masina(String modelMasina, int anFabricatie) {
         this.modelMasina = modelMasina;
         this.anFabricatie = anFabricatie;
-        this.dimensiuni = dimensiuni;
     }
 
     @Override
@@ -22,7 +21,8 @@ public class Masina implements IMasina, Cloneable {
         return anFabricatie;
     }
 
-    public String getDimensiuni() {
-        return dimensiuni;
+    public Masina setDimensiune(String dimensiune) {
+        this.dimensiune = dimensiune;
+        return this;
     }
 }

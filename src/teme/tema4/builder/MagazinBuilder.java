@@ -3,7 +3,7 @@ package teme.tema4.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagazinBuilder {
+public class MagazinBuilder implements IBuild {
 
     private String denumire;
     private int suprafata;
@@ -42,7 +42,8 @@ public class MagazinBuilder {
         return this;
     }
 
-    public Magazin build() throws Exception {
+    @Override
+    public Magazin build() {
         var magazinNou = new Magazin(denumire, suprafata, nrIntrari, isPodeauaStandard, duritate, materialeDecoratiuni);
         this.materialeDecoratiuni = new ArrayList<>();
         return magazinNou;

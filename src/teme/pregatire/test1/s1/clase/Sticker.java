@@ -3,8 +3,8 @@ package teme.pregatire.test1.s1.clase;
 public class Sticker implements Cloneable {
     private String dimensiuni;
 
-    Sticker(String dimensiuni) {
-        this.dimensiuni = dimensiuni;
+    Sticker(Masina m) {
+        this.dimensiuni = m.toString();
     }
 
     @Override
