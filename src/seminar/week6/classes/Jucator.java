@@ -72,7 +72,7 @@ public class Jucator implements IClone {
         clone.tip = this.tip;
         clone.name = this.name;
         clone.medicamente = this.medicamente; // pentru ca partajeaza lista de medicamente
-        clone.antrenamente = new java.util.ArrayList<>(this.antrenamente); // pentru ca fiecare are antrenamentele lui
+        clone.antrenamente = new ArrayList<>(this.antrenamente); // pentru ca fiecare are antrenamentele lui
         return clone;
     }
 
