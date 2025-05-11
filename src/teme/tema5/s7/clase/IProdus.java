@@ -4,6 +4,4 @@ public interface IProdus {
     void afiseazaDetalii();
 
     int getNumarProduse();
-
-    String getDenumire();
 }

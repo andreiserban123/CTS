@@ -1,35 +1,28 @@
 package teme.tema5.s7.clase;
 
-public class Produs {
-    private String name;
+public class Produs implements IProdus {
+    private String denumire;
     private double price;
+    private int stoc;
 
-
-    public Produs(String name, double price) {
-        this.name = name;
+    public Produs(String denumire, double price, int stoc) {
+        this.denumire = denumire;
         this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.stoc = stoc;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    @Override
+    public void afiseazaDetalii() {
+        System.out.println("Produs: " + denumire + ", Stoc: " + stoc);
     }
 
     @Override
-    public String toString() {
-        return "Produs{" +
-                "name='" + name + '\'' +
-                '}';
+    public int getNumarProduse() {
+        return this.stoc;
     }
+
 }
