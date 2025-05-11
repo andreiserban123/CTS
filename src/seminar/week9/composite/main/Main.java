@@ -1,25 +1,22 @@
 package seminar.week9.composite.main;
 
-import seminar.week9.composite.models.Colet;
-import seminar.week9.composite.models.INod;
-import seminar.week9.composite.models.NodStructura;
+import seminar.week9.composite.classes.Colet;
+import seminar.week9.composite.classes.INod;
+import seminar.week9.composite.classes.NodStructura;
 
 public class Main {
     public static void main(String[] args) {
         INod container = new NodStructura(10);
         INod cutie1 = new NodStructura(10);
-        INod cutie2 = new NodStructura(15);
-        INod colet1 = new Colet(20, false);
-        INod colet2 = new Colet(8, true);
+        INod cutie2 = new NodStructura(20);
+        INod colet1 = new Colet(true, 20);
+        INod colet2 = new Colet(true, 30);
+        container.addNod(cutie1);
+        container.addNod(cutie2);
+        cutie1.addNod(colet1);
+        cutie1.addNod(colet2);
 
-
-        container.adaugaNod(cutie1);
-        container.adaugaNod(cutie2);
-        cutie1.adaugaNod(colet1);
-        cutie2.adaugaNod(colet2);
-        System.out.println("Containerul este fragil? " + container.isFragil());
-
-        System.out.println("Greutatea totala a containerului: " + container.getGreutate());
-        System.out.println("Cutia 1 este fragila? " + cutie1.isFragil());
+        System.out.println(container.getGreutate());
+        System.out.println(container.isFragil());
     }
 }

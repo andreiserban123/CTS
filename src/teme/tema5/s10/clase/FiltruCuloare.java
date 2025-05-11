@@ -2,20 +2,20 @@ package teme.tema5.s10.clase;
 
 import java.util.List;
 
-public class FiltruPretMaxim extends FiltruAbstract {
-    private double pretMaxim;
+public class FiltruCuloare extends FiltruAbstract {
+    private String culoare;
 
-    public FiltruPretMaxim(double pretMaxim) {
-        this.pretMaxim = pretMaxim;
+    public FiltruCuloare(String culoare) {
+        this.culoare = culoare;
     }
 
     @Override
     public List<Produs> filtreaza(List<Produs> produse) {
-        if (pretMaxim <= 0) {
+        if (culoare == null || culoare.isEmpty()) {
             return filtreazaUrmator(produse);
         }
         List<Produs> produseFiltrate = produse.stream()
-                .filter(p -> p.getPret() <= pretMaxim)
+                .filter(p -> p.getCuloare().equalsIgnoreCase(culoare))
                 .toList();
         return filtreazaUrmator(produseFiltrate);
     }
