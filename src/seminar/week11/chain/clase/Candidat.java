@@ -28,4 +28,14 @@ public class Candidat {
     public double getNotaAdmitere() {
         return notaAdmitere;
     }
+
+    @Override
+    public String toString() {
+        return "Candidat{" +
+                "nume='" + nume + '\'' +
+                ", eseu='" + eseu + '\'' +
+                ", notaBac=" + notaBac +
+                ", notaAdmitere=" + notaAdmitere +
+                '}';
+    }
 }

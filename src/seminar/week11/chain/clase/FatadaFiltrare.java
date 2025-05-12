@@ -1,5 +1,8 @@
 package seminar.week11.chain.clase;
 
+import seminar.week11.chain.clase.strategy.IStrategy;
+import seminar.week11.chain.clase.strategy.StrategieNoGDPR;
+
 import java.util.*;
 
 public class FatadaFiltrare {
@@ -10,6 +13,8 @@ public class FatadaFiltrare {
         mapFiltrare.put("examen", new FiltruMedieExamen());
         mapFiltrare.put("eseu", new FiltruEseu());
     }
+
+    private IStrategy strategieCurenta = new StrategieNoGDPR();
 
     public FatadaFiltrare(List<String> names, List<Candidat> candidates, boolean shuffle) {
         HandlerA firstHandler = null;
@@ -37,6 +42,16 @@ public class FatadaFiltrare {
             }
         }
 
+        System.out.println("Start filtrare");
+
+        if (strategieCurenta != null) {
+            strategieCurenta.afisareCandidati(candidates);
+        } else {
+            for (var candidat : candidates) {
+                System.out.println(candidat);
+            }
+        }
+
         if (firstHandler != null) {
             List<Candidat> filteredCandidates = firstHandler.handleRequest(candidates);
             System.out.println("Candidatii ramasi in lista sunt:");
@@ -46,6 +61,10 @@ public class FatadaFiltrare {
         } else {
             System.out.println("Nu s-a gasit niciun filtru valid.");
         }
+    }
+
+    public void setStrategieCurenta(IStrategy strategieCurenta) {
+        this.strategieCurenta = strategieCurenta;
     }
 
 }
